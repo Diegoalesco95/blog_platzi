@@ -27,7 +27,7 @@ class Usuarios extends Component {
 
   render() {
     return (
-      <div className="margen">
+      <div>
         <table className="tabla table table-striped table-bordered">
           <thead className="thead-dark">
             <tr>
