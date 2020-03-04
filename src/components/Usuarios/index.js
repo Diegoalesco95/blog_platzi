@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as usuariosActions from '../../actions/usuariosActions';
 import PageLoading from '../General/PageLoading';
+import Fatal from '../General/Fatal';
 
 class Usuarios extends Component {
   componentDidMount() {
@@ -35,6 +36,9 @@ class Usuarios extends Component {
   render() {
     if (this.props.loading === true && !this.props.data) {
       return <PageLoading />;
+    }
+    if (this.props.error) {
+      return <Fatal mensaje={this.props.error} />;
     }
     return <div>{this.ponerContenido()}</div>;
   }
