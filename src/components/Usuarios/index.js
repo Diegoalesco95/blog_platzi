@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as usuariosActions from '../../actions/usuariosActions';
 import PageLoading from '../General/PageLoading';
 import Fatal from '../General/Fatal';
 import Tabla from './Tabla';
 
+import * as usuariosActions from '../../actions/usuariosActions';
+
 class Usuarios extends Component {
   componentDidMount() {
-    this.props.traerTodos();
+    if (!this.props.usuarios.length) {
+      this.props.traerTodos();
+    }
   }
 
   ponerContenido = () => {
