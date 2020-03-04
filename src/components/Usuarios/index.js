@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as usuariosActions from '../../actions/usuariosActions';
+import PageLoading from '../PageLoading';
 
 class Usuarios extends Component {
   componentDidMount() {
@@ -17,6 +18,9 @@ class Usuarios extends Component {
     ));
 
   render() {
+    if (this.props.loading === true && !this.props.data) {
+      return <PageLoading />;
+    }
     return (
       <div>
         <table className="tabla table table-striped table-bordered">

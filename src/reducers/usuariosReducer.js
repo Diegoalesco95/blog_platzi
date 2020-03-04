@@ -1,13 +1,23 @@
-import { TRAER_TODOS } from '../types/usuariosTypes';
+import { TRAER_TODOS, LOADING, ERROR } from '../types/usuariosTypes';
 
 const INITIAL_STATE = {
-  usuarios: []
+  usuarios: [],
+  loading: false,
+  error: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TRAER_TODOS:
-      return { ...state, usuarios: action.payload };
+      return {
+        ...state,
+        usuarios: action.payload,
+        loading: false
+      };
+    case LOADING:
+      return { ...state, loading: true };
+    case ERROR:
+      return { ...state, error: action.payload, loading: false };
     default:
       return state;
   }
