@@ -3,44 +3,30 @@ import { connect } from 'react-redux';
 import * as usuariosActions from '../../actions/usuariosActions';
 import PageLoading from '../General/PageLoading';
 import Fatal from '../General/Fatal';
+import Tabla from './Tabla';
 
 class Usuarios extends Component {
   componentDidMount() {
     this.props.traerTodos();
   }
 
-  ponerFilas = () =>
-    this.props.usuarios.map(usuario => (
-      <tr key={usuario.id}>
-        <td>{usuario.name}</td>
-        <td>{usuario.email}</td>
-        <td>{usuario.website}</td>
-      </tr>
-    ));
-
   ponerContenido = () => {
-    return (
-      <table className="tabla table table-striped table-bordered">
-        <thead className="thead-dark">
-          <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Enlace</th>
-          </tr>
-        </thead>
-        <tbody>{this.ponerFilas()}</tbody>
-      </table>
-    );
-  };
-
-  render() {
     if (this.props.loading === true && !this.props.data) {
       return <PageLoading />;
     }
     if (this.props.error) {
       return <Fatal mensaje={this.props.error} />;
     }
-    return <div>{this.ponerContenido()}</div>;
+    return <Tabla />;
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Usuarios</h1>
+        {this.ponerContenido()}
+      </div>
+    );
   }
 }
 
