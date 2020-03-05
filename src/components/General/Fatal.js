@@ -5,7 +5,7 @@ const Fatal = props => {
   return (
     <div className="Fatal">
       <img src={Error404} alt="Error 404" />
-      <h2>{props.mensaje}</h2>;
+      <h2 className="text-center">{props.mensaje}</h2>;
     </div>
   );
 };

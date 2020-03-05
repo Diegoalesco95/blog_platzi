@@ -79,7 +79,7 @@ class Publicaciones extends Component {
     const { publicaciones_key } = usuarios[key];
 
     return publicaciones[publicaciones_key].map(publicacion => (
-      <div className="pub_titulo">
+      <div className="pub_titulo pt-3 pb-3" key={publicacion.id} onClick={() => alert(publicacion.id)}>
         <h2>{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
       </div>
@@ -87,7 +87,7 @@ class Publicaciones extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div>
