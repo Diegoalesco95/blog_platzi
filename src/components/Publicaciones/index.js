@@ -91,7 +91,7 @@ class Publicaciones extends Component {
       >
         <h2 className="text-capitalize">{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
-        {publicacion.open ? <Comentarios /> : ''}
+        {publicacion.open ? <Comentarios comentarios={publicacion.comentarios} /> : ''}
       </div>
     ));
 
