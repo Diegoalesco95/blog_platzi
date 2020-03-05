@@ -68,4 +68,24 @@ export const openClose = (pub_key, com_key) => (dispatch, getState) => {
   });
 };
 
-export const traerComentarios = (pub_key, com_key) => (dispatch, getState) => {};
+export const traerComentarios = (pub_key, com_key) => async (dispatch, getState) => {
+  const { publicaciones } = getState().publicacionesReducer;
+  const seleccionada = publicaciones[pub_key][com_key];
+
+  const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${seleccionada.id}`);
+
+  const actualizada = {
+    ...seleccionada,
+    comentarios: response.data
+  };
+
+  const publicaciones_actualizadas = [...publicaciones];
+
+  publicaciones_actualizadas[pub_key] = [...publicaciones[pub_key]];
+  publicaciones_actualizadas[pub_key][com_key] = actualizada;
+
+  dispatch({
+    type: ACTUALIZAR,
+    payload: publicaciones_actualizadas
+  });
+};

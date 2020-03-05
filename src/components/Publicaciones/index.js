@@ -87,7 +87,7 @@ class Publicaciones extends Component {
       <div
         className="pub_titulo pt-3 pb-3"
         key={publicacion.id}
-        onClick={() => this.props.mostrarComentarios(pub_key, com_key, publicacion.comentarios)}
+        onClick={() => this.mostrarComentarios(pub_key, com_key, publicacion.comentarios)}
       >
         <h2 className="text-capitalize">{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
@@ -97,11 +97,13 @@ class Publicaciones extends Component {
 
   mostrarComentarios = (pub_key, com_key, comentarios) => {
     this.props.openClose(pub_key, com_key);
-    this.props.traerComentarios(pub_key, com_key);
+    if (!comentarios.length) {
+      this.props.traerComentarios(pub_key, com_key);
+    }
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
 
     return (
       <div>
