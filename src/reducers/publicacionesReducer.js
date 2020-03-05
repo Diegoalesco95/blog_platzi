@@ -1,4 +1,4 @@
-import { ACTUALIZAR, LOADING, ERROR, COM_LOADING, COM_ERROR } from '../types/publicacionesTypes';
+import { ACTUALIZAR, LOADING, ERROR, COM_LOADING, COM_ERROR, COM_ACTUALIZAR } from '../types/publicacionesTypes';
 
 const INITIAL_STATE = {
   publicaciones: [],
@@ -25,6 +25,13 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, com_loading: true };
     case COM_ERROR:
       return { ...state, com_error: action.payload, com_loading: false };
+    case COM_ACTUALIZAR:
+      return {
+        ...state,
+        publicaciones: action.payload,
+        com_loading: false,
+        com_error: ''
+      };
     default:
       return state;
   }

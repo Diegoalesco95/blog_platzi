@@ -4,16 +4,16 @@ import PageLoading from '../General/PageLoading';
 import Fatal from '../General/Fatal';
 
 const Comentarios = props => {
-  if (props.loading) {
-    return <PageLoading />;
+  if (props.com_error) {
+    return <Fatal mensaje={props.com_error} />;
   }
-  if (props.error) {
-    return <Fatal mensaje={props.error} />;
+  if (props.com_loading && !props.comentarios.length) {
+    return <PageLoading />;
   }
 
   const ponerComentarios = () =>
     props.comentarios.map(comentario => (
-      <li>
+      <li key={comentario.id}>
         <b>
           <u>{comentario.email}</u>
         </b>
