@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO } from '../types/tareasTypes';
+import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, AGREGADA } from '../types/tareasTypes';
 
 export const traerTodas = () => async dispatch => {
   const URL = 'https://jsonplaceholder.typicode.com';
@@ -39,9 +39,30 @@ export const cambioUsuarioId = usuario_id => dispatch => {
     payload: usuario_id
   });
 };
+
 export const cambioTitulo = titulo => dispatch => {
   dispatch({
     type: CAMBIO_TITULO,
     payload: titulo
   });
+};
+
+export const agregar = nueva_tarea => async dispatch => {
+  const URL = 'https://jsonplaceholder.typicode.com';
+  dispatch({
+    type: LOADING
+  });
+  try {
+    const response = await axios.post(`${URL}/todos`, nueva_tarea);
+    console.log(response.data);
+    dispatch({
+      type: AGREGADA
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: ERROR,
+      payload: 'Intenta mas tarde'
+    });
+  }
 };
