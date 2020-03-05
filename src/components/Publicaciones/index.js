@@ -86,6 +86,7 @@ class Publicaciones extends Component {
       <div className="pub_titulo pt-3 pb-3" key={publicacion.id} onClick={() => this.props.openClose(pub_key, com_key)}>
         <h2 className="text-capitalize">{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
+        {publicacion.open ? 'open' : 'close'}
       </div>
     ));
 
