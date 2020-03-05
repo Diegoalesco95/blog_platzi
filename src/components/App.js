@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Menu from './Menu';
 import Usuarios from './Usuarios';
-import 'bootstrap/dist/css/bootstrap.css';
 import Publicaciones from './Publicaciones';
+import Tareas from './Tareas';
 
-const Tareas = () => <div>Tareas</div>;
+import 'bootstrap/dist/css/bootstrap.css';
 
 const App = () => (
   <BrowserRouter>

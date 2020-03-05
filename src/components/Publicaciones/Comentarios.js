@@ -27,7 +27,8 @@ const Comentarios = props => {
     ));
 
   return (
-    <div>
+    <div className="mt-3">
+      <h3>Comentarios: </h3>
       <div className="row align-self-center">{ponerComentarios()}</div>
     </div>
   );
