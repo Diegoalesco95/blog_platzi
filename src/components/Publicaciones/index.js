@@ -4,9 +4,10 @@ import PageLoading from '../General/PageLoading';
 import Fatal from '../General/Fatal';
 import * as usuariosActions from '../../actions/usuariosActions';
 import * as publicacionesActions from '../../actions/publicacionesActions';
+import Comentarios from './Comentarios';
 
 const { traerTodos: usuariosTraerTodos } = usuariosActions;
-const { traerPorUsuario: publicacionesTraerPorUsuario, openClose } = publicacionesActions;
+const { traerPorUsuario: publicacionesTraerPorUsuario, openClose, traerComentarios } = publicacionesActions;
 
 class Publicaciones extends Component {
   async componentDidMount() {
@@ -83,12 +84,21 @@ class Publicaciones extends Component {
 
   mostrarInfo = (publicaciones, pub_key) =>
     publicaciones.map((publicacion, com_key) => (
-      <div className="pub_titulo pt-3 pb-3" key={publicacion.id} onClick={() => this.props.openClose(pub_key, com_key)}>
+      <div
+        className="pub_titulo pt-3 pb-3"
+        key={publicacion.id}
+        onClick={() => this.props.mostrarComentarios(pub_key, com_key, publicacion.comentarios)}
+      >
         <h2 className="text-capitalize">{publicacion.title}</h2>
         <h3>{publicacion.body}</h3>
-        {publicacion.open ? 'open' : 'close'}
+        {publicacion.open ? <Comentarios /> : ''}
       </div>
     ));
+
+  mostrarComentarios = (pub_key, com_key, comentarios) => {
+    this.props.openClose(pub_key, com_key);
+    this.props.traerComentarios(pub_key, com_key);
+  };
 
   render() {
     // console.log(this.props);
@@ -112,7 +122,8 @@ const mapStateToProps = ({ usuariosReducer, publicacionesReducer }) => {
 const mapDispatchToProps = {
   usuariosTraerTodos,
   publicacionesTraerPorUsuario,
-  openClose
+  openClose,
+  traerComentarios
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Publicaciones);
