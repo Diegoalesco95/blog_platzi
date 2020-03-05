@@ -10,7 +10,7 @@ const Tareas = () => <div>Tareas</div>;
 const App = () => (
   <BrowserRouter>
     <Menu />
-    <div className="margen">
+    <div className="container mt-5">
       <Route exact path="/" component={Usuarios} />
       <Route exact path="/tareas" component={Tareas} />
       <Route exact path="/publicaciones/:key" component={Publicaciones} />

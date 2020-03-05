@@ -11,9 +11,10 @@ export const traerPorUsuario = key => async (dispatch, getState) => {
   const { usuarios } = getState().usuariosReducer;
   const { publicaciones } = getState().publicacionesReducer;
   const usuario_id = usuarios[key].id;
+  const URL = 'https://jsonplaceholder.typicode.com';
 
   try {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${usuario_id}`);
+    const response = await axios.get(`${URL}/posts?userId=${usuario_id}`);
 
     const nuevas = response.data.map(publicacion => ({
       ...publicacion,
@@ -69,6 +70,7 @@ export const openClose = (pub_key, com_key) => (dispatch, getState) => {
 };
 
 export const traerComentarios = (pub_key, com_key) => async (dispatch, getState) => {
+  const URL = 'https://jsonplaceholder.typicode.com';
   dispatch({
     type: COM_LOADING
   });
@@ -76,7 +78,7 @@ export const traerComentarios = (pub_key, com_key) => async (dispatch, getState)
   const seleccionada = publicaciones[pub_key][com_key];
 
   try {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${seleccionada.id}`);
+    const response = await axios.get(`${URL}/comments?postId=${seleccionada.id}`);
 
     const actualizada = {
       ...seleccionada,
