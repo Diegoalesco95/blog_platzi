@@ -8,9 +8,21 @@ export const traerTodas = () => async dispatch => {
   });
   try {
     const response = await axios.get(`${URL}/todos`);
+
+    const tareas = {};
+    response.data.map(
+      tar =>
+        (tareas[tar.userId] = {
+          ...tareas[tar.userId],
+          [tar.id]: {
+            ...tar
+          }
+        })
+    );
+
     dispatch({
       type: TRAER_TODAS,
-      payload: response.data
+      payload: tareas
     });
   } catch (error) {
     console.log('Error: ', error.message);
