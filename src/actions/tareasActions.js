@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TRAER_TODAS, LOADING, ERROR } from '../types/tareasTypes';
+import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO } from '../types/tareasTypes';
 
 export const traerTodas = () => async dispatch => {
   const URL = 'https://jsonplaceholder.typicode.com';
@@ -31,4 +31,17 @@ export const traerTodas = () => async dispatch => {
       payload: 'Uuups! Algo salió mal. Parece que la información de tareas no está disponible.'
     });
   }
+};
+
+export const cambioUsuarioId = usuario_id => dispatch => {
+  dispatch({
+    type: CAMBIO_USUARIO,
+    payload: usuario_id
+  });
+};
+export const cambioTitulo = titulo => dispatch => {
+  dispatch({
+    type: CAMBIO_TITULO,
+    payload: titulo
+  });
 };

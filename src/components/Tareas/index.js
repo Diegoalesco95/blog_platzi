@@ -44,7 +44,7 @@ class Tareas extends Component {
   render() {
     return (
       <div>
-        <Link className="btn btn-success" to="/tareas/guardar">
+        <Link className="btn btn-success mb-3" to="/tareas/guardar">
           Agregar
         </Link>
 
