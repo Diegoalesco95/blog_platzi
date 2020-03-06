@@ -30,7 +30,7 @@ class Tareas extends Component {
   };
 
   ponerTareas = usu_id => {
-    const { tareas } = this.props;
+    const { tareas, cambioCheck } = this.props;
     const por_usuario = {
       ...tareas[usu_id]
     };
@@ -38,7 +38,12 @@ class Tareas extends Component {
     return Object.keys(por_usuario).map(tar_id => (
       <div key={tar_id} className="row mb-2">
         <div className="col-12 col-md-8 col-lg-9">
-          <input type="checkbox" defaultChecked={por_usuario[tar_id].completed} className="mr-3 mb-2" />
+          <input
+            type="checkbox"
+            defaultChecked={por_usuario[tar_id].completed}
+            className="mr-3 mb-2"
+            onChange={() => cambioCheck(usu_id, tar_id)}
+          />
           {por_usuario[tar_id].title}
         </div>
         <div className="col-12 col-md-4 col-lg-3 center d-flex">
