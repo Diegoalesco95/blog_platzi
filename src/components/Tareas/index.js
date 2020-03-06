@@ -13,8 +13,9 @@ class Tareas extends Component {
   }
 
   componentDidUpdate() {
-    if (!Object.keys(this.props.tareas).length) {
-      this.props.traerTodas();
+    const { tareas, loading, traerTodas } = this.props;
+    if (!Object.keys(tareas).length && !loading) {
+      traerTodas();
     }
   }
 
@@ -65,8 +66,6 @@ class Tareas extends Component {
   };
 
   render() {
-    console.log(this.props.tareas);
-
     return (
       <div>
         <Link className="btn btn-success mb-3" to="/tareas/guardar">

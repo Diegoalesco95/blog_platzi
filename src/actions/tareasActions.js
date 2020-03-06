@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO_ID, CAMBIO_TITULO, GUARDAR, ACTUALIZAR } from '../types/tareasTypes';
+import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO_ID, CAMBIO_TITULO, GUARDAR, ACTUALIZAR, LIMPIAR } from '../types/tareasTypes';
 
 export const traerTodas = () => async dispatch => {
   const URL = 'https://jsonplaceholder.typicode.com';
@@ -54,7 +54,6 @@ export const agregar = nueva_tarea => async dispatch => {
   });
   try {
     const response = await axios.post(`${URL}/todos`, nueva_tarea);
-    console.log(response.data);
     dispatch({
       type: GUARDAR
     });
@@ -74,7 +73,6 @@ export const editar = tarea_editada => async dispatch => {
   });
   try {
     const response = await axios.put(`${URL}/todos/${tarea_editada.id}`, tarea_editada);
-    console.log(response.data);
     dispatch({
       type: GUARDAR
     });
@@ -115,7 +113,6 @@ export const eliminar = tar_id => async dispacth => {
   });
   try {
     const response = await axios.delete(`${URL}/todos/${tar_id}`);
-    console.log(response);
     dispacth({
       type: TRAER_TODAS,
       payload: {}
@@ -127,4 +124,10 @@ export const eliminar = tar_id => async dispacth => {
       payload: 'Servicio no disponible'
     });
   }
+};
+
+export const limpiarForma = () => dispacth => {
+  dispacth({
+    type: LIMPIAR
+  });
 };
