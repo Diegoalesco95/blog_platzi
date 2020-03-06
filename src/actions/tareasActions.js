@@ -107,3 +107,24 @@ export const cambioCheck = (usu_id, tar_id) => (dispacth, getState) => {
     payload: actualizadas
   });
 };
+
+export const eliminar = tar_id => async dispacth => {
+  const URL = 'https://jsonplaceholder.typicode.com';
+  dispacth({
+    type: LOADING
+  });
+  try {
+    const response = await axios.delete(`${URL}/todos/${tar_id}`);
+    console.log(response);
+    dispacth({
+      type: TRAER_TODAS,
+      payload: {}
+    });
+  } catch (error) {
+    console.log(error.message);
+    dispacth({
+      type: ERROR,
+      payload: 'Servicio no disponible'
+    });
+  }
+};
