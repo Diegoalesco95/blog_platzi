@@ -53,7 +53,7 @@ export const agregar = nueva_tarea => async dispatch => {
     type: LOADING
   });
   try {
-    const response = await axios.post(`${URL}/todos`, nueva_tarea);
+    await axios.post(`${URL}/todos`, nueva_tarea);
     dispatch({
       type: GUARDAR
     });
@@ -72,7 +72,7 @@ export const editar = tarea_editada => async dispatch => {
     type: LOADING
   });
   try {
-    const response = await axios.put(`${URL}/todos/${tarea_editada.id}`, tarea_editada);
+    await axios.put(`${URL}/todos/${tarea_editada.id}`, tarea_editada);
     dispatch({
       type: GUARDAR
     });
@@ -112,7 +112,7 @@ export const eliminar = tar_id => async dispacth => {
     type: LOADING
   });
   try {
-    const response = await axios.delete(`${URL}/todos/${tar_id}`);
+    await axios.delete(`${URL}/todos/${tar_id}`);
     dispacth({
       type: TRAER_TODAS,
       payload: {}
