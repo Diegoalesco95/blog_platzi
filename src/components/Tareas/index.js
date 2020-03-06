@@ -24,7 +24,7 @@ class Tareas extends Component {
     return Object.keys(tareas).map(usu_id => (
       <div key={usu_id}>
         <h2>Usuario {usu_id}</h2>
-        <div className="contenedor_tareas">{this.ponerTareas(usu_id)}</div>
+        <div className="font-weight-normal text-capitalize mt-4 ml-4 mb-4">{this.ponerTareas(usu_id)}</div>
       </div>
     ));
   };
@@ -36,9 +36,19 @@ class Tareas extends Component {
     };
 
     return Object.keys(por_usuario).map(tar_id => (
-      <div key={tar_id}>
-        <input type="checkbox" defaultChecked={por_usuario[tar_id].completed} className="mr-3" />
-        {por_usuario[tar_id].title}
+      <div key={tar_id} className="row mb-2">
+        <div className="col-12 col-md-8 col-lg-9">
+          <input type="checkbox" defaultChecked={por_usuario[tar_id].completed} className="mr-3 mb-2" />
+          {por_usuario[tar_id].title}
+        </div>
+        <div className="col-12 col-md-4 col-lg-3 center d-flex">
+          <Link className="btn btn-outline-primary btn-sm ml-4 mr-2" to={`/tareas/guardar/${usu_id}/${tar_id}`}>
+            Editar
+          </Link>
+          <Link className="btn btn-outline-danger btn-sm" to="">
+            Eliminar
+          </Link>
+        </div>
       </div>
     ));
   };
