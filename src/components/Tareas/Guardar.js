@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as tareasActions from '../../actions/tareasActions';
+import PageLoading from '../General/PageLoading';
+import Fatal from '../General/Fatal';
+import { Redirect } from 'react-router-dom';
 
 class Guardar extends Component {
   cambioUsuarioId = event => {
@@ -20,6 +23,27 @@ class Guardar extends Component {
     agregar(nueva_tarea);
   };
 
+  deshabilitar = () => {
+    const { usuario_id, titulo, loading } = this.props;
+
+    if (loading) {
+      return true;
+    }
+    if (!usuario_id || !titulo) {
+      return true;
+    }
+    return false;
+  };
+  mostrarAccion = () => {
+    const { error, loading } = this.props;
+    if (loading) {
+      return <PageLoading />;
+    }
+    if (error) {
+      return <Fatal mensaje={error} />;
+    }
+  };
+
   render() {
     return (
       <div>
@@ -33,9 +57,10 @@ class Guardar extends Component {
             <label htmlFor="titulo">Titulo:</label>
             <input className="form-control" type="text" name="titulo" value={this.props.titulo} onChange={this.cambioTitulo} />
           </div>
-          <button className="btn btn-success" onClick={this.handleClick}>
+          <button className="btn btn-success" onClick={this.handleClick} disabled={this.deshabilitar()}>
             Save
           </button>
+          {this.mostrarAccion()}
         </div>
       </div>
     );

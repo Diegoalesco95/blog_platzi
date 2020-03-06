@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, AGREGADA } from '../types/tareasTypes';
+import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO_ID, CAMBIO_TITULO, AGREGADA } from '../types/tareasTypes';
 
 export const traerTodas = () => async dispatch => {
   const URL = 'https://jsonplaceholder.typicode.com';
@@ -35,7 +35,7 @@ export const traerTodas = () => async dispatch => {
 
 export const cambioUsuarioId = usuario_id => dispatch => {
   dispatch({
-    type: CAMBIO_USUARIO,
+    type: CAMBIO_USUARIO_ID,
     payload: usuario_id
   });
 };

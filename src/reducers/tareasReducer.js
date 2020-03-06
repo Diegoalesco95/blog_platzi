@@ -1,4 +1,4 @@
-import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO, CAMBIO_TITULO, AGREGADA } from '../types/tareasTypes';
+import { TRAER_TODAS, LOADING, ERROR, CAMBIO_USUARIO_ID, CAMBIO_TITULO, AGREGADA } from '../types/tareasTypes';
 
 const INITIAL_STATE = {
   tareas: {},
@@ -21,7 +21,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: true };
     case ERROR:
       return { ...state, error: action.payload, loading: false };
-    case CAMBIO_USUARIO:
+    case CAMBIO_USUARIO_ID:
       return { ...state, usuario_id: action.payload };
     case CAMBIO_TITULO:
       return { ...state, titulo: action.payload };
